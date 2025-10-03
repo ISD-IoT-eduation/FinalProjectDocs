@@ -2,6 +2,8 @@
 
 <!-- TODO - not done -->
 
+![control panel demo](assets/controlPanelDemo.png)
+
 We will be using the control panel to config the final demo setting and send commands to your smart cars, including the demo timer, task ID, start and end points, etc. 
 
 The control panel links directly to the Firebase realtime database which your car will be given the WEB API KEY to read off data from it. 
@@ -10,7 +12,7 @@ We will also be giving you the access to use the control panel for testing, whic
 
 You need to 
 
-1. Sign up and login to the control panel
+1. Sign up and login to the control panel at our Control Panel Site: [panel.isdn2602.site](https://panel.isdn2602.site)
 2. Copy your user ID (should be visible at the top right corner of the app)
 3. Input the user ID string to your skeleton code (so your car will only read your commands and not be confused by others' commands)
 4. (Optional) Turn on the `Serial.print` for retrieving Firebase data and see if the data matches the command you set on your control panel
