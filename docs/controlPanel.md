@@ -1,12 +1,10 @@
 # Control Panel
 
-<!-- TODO - not done -->
-
 ![control panel demo](assets/controlPanelDemo.png)
 
-We will be using the control panel to config the final demo setting and send commands to your smart cars, including the demo timer, task ID, start and end points, etc. 
+We will be using the control panel to configure the final demo setting and send commands to your smart cars, including the demo timer, task ID, start and end points, etc. 
 
-The control panel links directly to the Firebase realtime database which your car will be given the WEB API KEY to read off data from it. 
+The control panel links directly to the Firebase realtime database which your car will be given the `WEB API KEY` to read off data from it. 
 
 We will also be giving you the access to use the control panel for testing, which your data will be stored under your own user ID, similar to what you have done during the Firebase lab. 
 
@@ -18,9 +16,7 @@ You need to
 4. (Optional) Turn on the `Serial.print` for retrieving Firebase data and see if the data matches the command you set on your control panel
 
 
-!!! info
-
-    **Important Notes**
+!!! Notice
 
     1. Any attempts to write to the Realtime database other than those allowed on the control panel website is strictly prohibited.
     2. Please only use the control panel when necessary i.e. when you are testing and are physically present at Room 4223.
