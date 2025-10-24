@@ -1,6 +1,8 @@
 # Battery Recharging
 
+![car and batteries](assets/car-and-batteries.png)
 
+Each team will be provided with a smart car and two rechargeable LiPo batteries to power your smart car during the final demo and testing, all labelled with your team number (e.g. Final Project Group 18 will have the car labelled as '18' and the batteries labelled as '18A' and '18B').
 
 ## Steps to Recharge the Battery
 
