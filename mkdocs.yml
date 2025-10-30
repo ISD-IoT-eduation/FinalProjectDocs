@@ -4,6 +4,7 @@ theme:
       primary: indigo
       accent: blue
     name: material
+    custom_dir: overrides
     features:
         - content.code.copy
     icon:
@@ -46,3 +47,5 @@ extra_javascript:
 
 extra:
   generator: false
+  giscus:
+    enabled: true
