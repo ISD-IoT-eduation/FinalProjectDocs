@@ -133,9 +133,9 @@ uint8_t ReadSensorState(IRSensorData& IRData){
 ## RFID Reader
 The code of the RFID Reader (MFRC522) is based on an open-source repo in github.
 
-Repo url: https://github.com/miguelbalboa/rfid
+Repo URL: [miguelbalboa/rfid](https://github.com/miguelbalboa/rfid)
 
-The datasheet of the MFRC522 can be found here: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5531/4411_CN0090%20other%20related%20document%20%281%29.pdf
+The datasheet of the MFRC522 can be found here: ([MFRC522 Datasheet](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5531/4411_CN0090%20other%20related%20document%20%281%29.pdf))
 
 The driver in skeleton code is modified for running I2C protocol, which the repo above is for SPI protocol. 
 
@@ -149,12 +149,11 @@ This manual will ONLY guide you how to call the API in your `.ino` file.
 ## Inertial Measurement Unit (IMU)
 The code of the IMU (ICM42688-P) is based on an open-source repo in github. 
 
-Repo url: https://github.com/finani/ICM42688 
+Repo URL: [finani/ICM42688](https://github.com/finani/ICM42688) 
 
 For detail please refer to the github page. 
 
-The datasheet of the ICM42688-P can be found here: https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000347-icm-42688-p-v1.6.pdf 
-
+The datasheet of the ICM42688-P can be found here: [ICM42688-P Datasheet](https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000347-icm-42688-p-v1.6.pdf) 
 The driver consist of the following files: 
 * `IMU.h`
 * `IMU.cpp`

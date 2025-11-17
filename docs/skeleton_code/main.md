@@ -1,10 +1,10 @@
 # Main Code `.ino` File
-This section include the basic of FreeRTOS, Tasks, PID Control and detail of the code in `.ino` file.
+This section include the basic of FreeRTOS, Tasks, PID Control and detail of the code in `.ino` file (without Firebase, for Firebase part please refer to the [Firebase section](/skeleton_code/firebase/)).
 
 Most of the code will be written in this file for your project. 
 
 ## FreeRTOS 
-For detail, please visit FreeRTOS official website: https://www.freertos.org/Documentation/02-Kernel/04-API-references/01-Task-creation/00-TaskHandle
+For detail, please visit FreeRTOS official website: [FreeRTOS Task Creation](https://www.freertos.org/Documentation/02-Kernel/04-API-references/01-Task-creation/00-TaskHandle)
 
 
 ### Task
