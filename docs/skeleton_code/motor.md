@@ -56,8 +56,8 @@ namespace MotorControl {
 ```
 
 ### `void DCMotorControl::Init()`
-```cpp
 
+```cpp
 void MotorControl::DCMotorControl::Init()
 {
   // Setup the Motor ID to the struct
@@ -96,9 +96,11 @@ void MotorControl::DCMotorControl::Init()
 ```
 
 ## Spinning the DC motor
-## Refer to the datasheet of the motor sheet (Motor driver)
 
-Check out URL: https://www.ti.com/lit/ds/symlink/drv8871.pdf?ts=1763316592601&ref_url=https%253A%252F%252Fwww.google.com%252F for the latest docs.
+Refer to the datasheet of the motor sheet (Motor driver)
+
+Check out URL: [DRV8871 3.6-A Brushed DC Motor Driver With Internal Current Sense (PWM Control)](https://www.ti.com/lit/ds/symlink/drv8871.pdf?ts=1763316592601&ref_url=https%253A%252F%252Fwww.google.com%252F) for the latest docs.
+
 ![MotorDriverDatashhet](../assets/MotorDriverLogic.png)
 
 
@@ -169,6 +171,7 @@ struct Encoder_t
 
 ### Constant for encoder
 * encoderResolution is tested by full speed (100% dutycycle) and count the pulses. Since the rpm of the motor without payload is 300, the pulse per rotation of the motor can be found. 
+
 ```cpp
 /*Constants for Encoder
   Find out the encoder resolution by yourself */
@@ -221,6 +224,7 @@ namespace Encoder {
 ```
 ### Initalization of RPM counter
 In `MotorControl.cpp`, 
+
 ```cpp
 /*Init the Enocoder related Variables before the task starts*/
 Encoder_t EncoderLeft = { 0,
@@ -269,7 +273,7 @@ namespace Encoder {
     // Update the encoder count
     LeftWheelRPM.encoderPulses += change;
   };
-  ```
+```
 
 ### `void IRAM_ATTR Encoder::handleRightEncoderInterrupt()`
   ```cpp
@@ -297,6 +301,7 @@ namespace Encoder {
 ### `Encoder::Init()`
 * Initialization of ALL the GPIO pins for encoder. 
 * Attach the interrupts to MCU, which to tell MCU to enable the interrupts.
+
 ```cpp
   void Init()
   {
