@@ -3,11 +3,11 @@ This section include the basic of FreeRTOS, Tasks, PID Control and detail of the
 
 Most of the code will be written in this file for your project. 
 
-# FreeRTOS 
+## FreeRTOS 
 For detail, please visit FreeRTOS official website: https://www.freertos.org/Documentation/02-Kernel/04-API-references/01-Task-creation/00-TaskHandle
 
 
-## Task
+### Task
 Take blinking a LED as an example, a “Task” consists of:
 
 - Stack
@@ -41,14 +41,14 @@ void Blink(void *pvPara)
 }
 ```
 
-## Core Configuration of ESP32S3
+### Core Configuration of ESP32S3
 
-| Core  | Purpose |
-| --- | --- |
-| 0 | Wifi / Bluetooth Connection |
-| 1 | Local Control  |
+| Core | Purpose                     |
+| ---- | --------------------------- |
+| 0    | Wifi / Bluetooth Connection |
+| 1    | Local Control               |
 
-## `xTaskCreatePinnedToCore()`
+### `xTaskCreatePinnedToCore()`
 Create FreeRTOS tasks with proper namespaced functions
 Task creation function:
 ```cpp
@@ -69,7 +69,7 @@ Example of creating the task of blinking and pin to core 1 of ESP32S3.
 xTaskCreatePinnedToCore(Blink, "Blink", 2048, NULL, 1 , &BlinkTaskTCB, 1 );
 ```
 
-# `ChassisSkeletonCode.ino` 
+## `ChassisSkeletonCode.ino` 
 These files should be included: 
 ```cpp
 #include <Arduino.h>
@@ -85,9 +85,9 @@ These files should be included:
                   // Please refer to the Sensor lab code for how to use IMU API 
 ```
 
-## PID Control
+### PID Control
 This section will explain and guide you how to use the PID driver provided in the skeleton code. 
-### PID_t (struct)
+#### PID_t (struct)
 Using struct for handling multiple PIDs (i.e. Speed of Left & Right wheel motor)
 
 Also, create a member function to compute the PID using different set of PID para. 
@@ -129,7 +129,7 @@ PID_t LeftWheelPID;
 PID_t RightWheelPID;
 ```
 
-## `void SpeedControlTask(void* pvPara)`
+### `void SpeedControlTask(void* pvPara)`
 
 Before entering the loop, initialize all the PID value 
 
@@ -189,7 +189,7 @@ Finally, run the PID function to mantain the speed of wheels.
     }
 ```
 
-## `void MovementTask(boid* para)`
+### `void MovementTask(boid* para)`
 This task is for line tracking (by default)
 
 You can  also write your RFID nagivation code here. 
