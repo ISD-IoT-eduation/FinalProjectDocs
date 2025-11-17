@@ -131,7 +131,186 @@ uint8_t ReadSensorState(IRSensorData& IRData){
 ```
 
 ## RFID Reader
+The code of the RFID Reader (MFRC522) is based on an open-source repo in github.
+
+Repo url: https://github.com/miguelbalboa/rfid
+
+The datasheet of the MFRC522 can be found here: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5531/4411_CN0090%20other%20related%20document%20%281%29.pdf
+
+The driver in skeleton code is modified for running I2C protocol, which the repo above is for SPI protocol. 
+
+The driver consist of the following files:
+* `MFRC522_I2C.hpp`
+* `MFRC522_I2C.cpp`
+
+This manual will ONLY guide you how to call the API in your `.ino` file. 
+
 
 ## Inertial Measurement Unit (IMU)
+The code of the IMU (ICM42688-P) is based on an open-source repo in github. 
+
+Repo url: https://github.com/finani/ICM42688 
+
+For detail please refer to the github page. 
+
+The datasheet of the ICM42688-P can be found here: https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000347-icm-42688-p-v1.6.pdf 
+
+The driver consist of the following files: 
+* `IMU.h`
+* `IMU.cpp`
+* `register.h`
+
+This manual will ONLY guide you how to call the API in your `.ino` file. 
+
 
 ## Ultrasonic Sensor
+In `UltrasonicSensor.hpp`, 
+```cpp 
+namespace UltrasonicSensor{
+  void Init();
+  float GetDistance();
+}
+```
+
+In `UltrasonicSensor.cpp` 
+Setting the constant value of speed of sound: 
+```cpp
+#define SOUND_SPEED 340
+```
+
+## `void UltrasonicSensor::Init()`
+Initialization of the ultrasonic sensor pin, echo and trig pin. 
+```cpp
+void UltrasonicSensor::Init(){ 
+  pinMode(Pinout::UltrasonicTrigPin, OUTPUT); // Sets the trigPin as an Output
+  pinMode(Pinout::UltrasonicEchoPin, INPUT); // Sets the echoPin as an Input
+  Serial.println("Ultrasonic Sensor is set");
+}
+```
+
+
+## `float UltrasonicSensor::GetDistane()`
+@brief Ouput the distance of the ultrasonic sensor measured. (in meter)
+
+@return Distance (in float)
+
+```cpp
+float UltrasonicSensor::GetDistance(){
+  long duration = 0;  //initalize the temp para. 
+  float distance = 0; 
+  // Clears the trigPin
+  digitalWrite(Pinout::UltrasonicTrigPin, LOW);
+  delayMicroseconds(2);
+  // Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(Pinout::UltrasonicTrigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(Pinout::UltrasonicTrigPin, LOW);
+  
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(Pinout::UltrasonicEchoPin, HIGH);
+  
+  // Calculate the distance (in m)
+  distance = (duration * SOUND_SPEED/100)/2;
+  return distance; 
+  //For Debug Use
+  // Prints the distance in the Serial Monitor
+  // Serial.print("Distance (cm): ");
+  // Serial.println(distance/100);
+}
+```
+
+## Buzzer 
+
+The buzzer used on the board is Passive Buzzer which the buzzer is controlled by the PWM signal from the MCU. 
+
+The driver consist of the following files: 
+* `Buzzer.hpp`
+* `Buzzer.cpp`
+* `pitches.h`
+
+In `Buzzer.hpp`,
+A mdelody with the respective duration of each note is created for demo purpose. 
+```cpp
+extern int DemoMelody[];
+extern int DemoDurations[];
+```
+
+In `Buzzer.cpp`, 
+```cpp
+//Here is a reference for the melody and duration format, also refer to the pitches.h
+int DemoMelody[] = {
+  // Phrase 1: Intro Fanfare (16th notes)
+  NOTE_FS4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_FS5,
+  // Phrase 2: Countdown Motif
+  NOTE_B4, NOTE_C5, NOTE_B4, NOTE_A4, NOTE_FS4, NOTE_A4, NOTE_B4,
+
+  NOTE_B4, NOTE_B4, NOTE_B4, NOTE_B6
+};
+
+// Note Durations: 
+// 2 = half, 4 = quarter, 8 = eighth, 16 = sixteenth
+int DemoDurations[] = { 
+  // Durations for Intro Fanfare (all 16th notes)
+  16, 16, 16, 16, 16, 16, 16, 16,
+  // Durations for Countdown Motif
+  8, 8, 8, 8, 4, 8, 2,
+
+  2, 2, 2, 1
+};
+```
+### Fucntion for Buzzer
+In the `Buzzer` namespace, 
+```cpp
+namespace Buzzer {
+void Init();
+void PlayMelody(int* melody, int* durations);
+}
+```
+
+### `void Buzzer::Init()` 
+Initialization of the Buzzer pin to `OUTPUT` 
+```cpp
+void Buzzer::Init(){
+  pinMode(Pinout::Buzzer, OUTPUT);
+}
+```
+
+
+### `void PlayMelody(int* melody, int* durations)`
+@brief Play the melody with the respective duration of each note once
+
+@para `int* melody` Pointer of the melody (e.g. DemoMelody)
+
+@para `int* durations` Pointer of the duration (e.g. DemoDurations)
+
+* Noted that the length of the `int melody` and `int durations` MUST BE THE SAME, otherwise the function will not work properly, 
+
+```cpp
+void Buzzer::PlayMelody(int *melody, int *durations){
+      // Calculate the number of notes in the melody
+    int numNotes = sizeof(melody) / sizeof(melody[0]);
+    
+    // Iterate over the notes
+    for (int thisNote = 0; thisNote < numNotes; thisNote++) {
+      
+      // To calculate the note duration, take one second divided by the note type.
+      // e.g., quarter note = 1000 / 4, eighth note = 1000/8, etc.
+      int noteDuration = 1000 / durations[thisNote];
+      
+      // Play the note using the tone() function
+      tone(Pinout::Buzzer, melody[thisNote], noteDuration);
+      
+      // To distinguish between notes, set a minimum time between them.
+      // The note's duration + 30% (to create a short pause) works well.
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+      
+      // Stop the tone playing (creates a cleaner staccato effect)
+      noTone(Pinout::Buzzer);
+    }
+    // Final cleanup - ensure the PWM channel is detached
+    ledcDetach(Pinout::Buzzer);
+
+}
+```
+
