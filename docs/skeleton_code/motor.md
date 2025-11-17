@@ -148,7 +148,8 @@ void MotorControl::DCMotorControl::Stop(MotorControl::DCMotor& Motor)
 
 # Encoder for DC Motor
 ### Setting up the encoder for DC motor (n20)
-![DataSheet of N20 Motor](..\assets\N20MotorSpec.png)
+![DataSheet of N20 Motor](../assets/N20MotorSpec.png)
+
 * The gearbox used on the car is highlight in red, and the rpm of the motor (without any payload) is 300.
 
 ### Creating struct for encoder
