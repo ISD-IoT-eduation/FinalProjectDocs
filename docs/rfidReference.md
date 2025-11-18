@@ -6,6 +6,8 @@ Here you can find the RFID tags to all tiles:
 The final demo arena consists of 5*5 = 25 Tiles with the Tile Board IDs showing below:
 ![Arena layout](assets/arenalayout.png)
 
+Following the same numbering scheme, the testing field consists of 2*5 = 10 Tiles with the Tile Board IDs from 26 to 35.
+
 
 Each tile consists of 9 RFIDs with the indices showing below:
 
