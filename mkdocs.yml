@@ -6,10 +6,13 @@ theme:
     name: material
     custom_dir: overrides
     features:
-        - content.code.copy
+      - content.code.copy
+      - content.tabs.link
+      - content.code.annotate
     icon:
         logo: material/car-connected
         favicon: material/car-connected
+
 markdown_extensions:
     - pymdownx.pathconverter:
           base_path: "/TeachingTeamUserManual"
@@ -34,12 +37,13 @@ markdown_extensions:
     - pymdownx.blocks.caption
     - admonition
     - pymdownx.details
-    - pymdownx.superfences
     - pymdownx.critic
     - pymdownx.caret
     - pymdownx.keys
     - pymdownx.mark
     - pymdownx.tilde
+    - pymdownx.tabbed:
+          alternate_style: true
 
 extra_javascript:
     - javascripts/mathjax.js
