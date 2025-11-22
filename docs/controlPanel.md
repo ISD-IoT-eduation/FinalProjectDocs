@@ -22,3 +22,12 @@ You need to
     2. Please only use the control panel when necessary i.e. when you are testing and are physically present at Room 4223.
     3. Please close the website when it is not in use to minimize data traffic.
     4. Please remember your username and password for login. We currently do no provide account retrieval service.
+
+
+## Traffic Light System Control
+
+To reduce the data traffic, we have designed that traffic light system can only be controlled by admin. If you have done with the basic functionalities and would like to test the traffic light system with dynamic status, please let us know and we will turn on the system to change the traffic light status for you.
+
+## Timer Control 
+
+Again to reduce data traffic and delay, the timer is updated only on changes (i.e. start, pause, reset). The timer will not be updated every second.
